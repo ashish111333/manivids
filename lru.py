@@ -18,7 +18,8 @@ class LruScene(Scene):
         pool.move_to(elps.get_center())
         arr.move_to(LEFT)
         
-        self.play(FadeIn(arr))
+        
+        
         
         
         
