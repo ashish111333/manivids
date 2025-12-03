@@ -23,7 +23,7 @@ def rect_with_label(label: str,h:int,w:int):
     header_rect=Rectangle(height=3,w=w)
     header_txt=Text(label).move_to(header_rect.get_center())
     container_rect=Rectangle(height=h,width=w)
-    vg=VGroup(header_rect,container_rect).arrange(DOWN,buff=0.1)
+    vg=VGroup(VGroup(header_rect,header_txt),container_rect).arrange(DOWN,buff=0.1)
     return vg
     
     
