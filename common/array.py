@@ -1,0 +1,31 @@
+from manim import *
+from typing import  List,Tuple
+
+
+def create_array(sqr_length: float,l:int):
+    
+    arr=VGroup()
+    for i in range(l):
+        arr+=Square(side_length=sqr_length).scale(1).set_color(GREEN)
+    arr.arrange(DOWN,buff=0.2)
+    return arr
+
+def object_pool(objs: List):
+    objs_pool=VGroup()
+    for obj in objs:
+        o=Text(f"{obj}").set_color(YELLOW)
+        objs_pool+=o
+    objs_pool.arrange(DOWN,buff=0.7)
+    return objs_pool
+    
+    
+def rect_with_label(label: str,h:int,w:int):
+    header_rect=Rectangle(height=3,w=w)
+    header_txt=Text(label).move_to(header_rect.get_center())
+    container_rect=Rectangle(height=h,width=w)
+    vg=VGroup(header_rect,container_rect).arrange(DOWN,buff=0.1)
+    return vg
+    
+    
+    
+    
