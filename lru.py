@@ -15,8 +15,8 @@ class LruScene(Scene):
         arr=create_array(3,3).scale(0.4)
         pool=object_pool(cache_ex).scale(0.7)
         elps=Ellipse(3,4).set_color(GREEN)
-        pool.move_to(elps.get_center())
-        arr.move_to(LEFT)
+        prog_grp=VGroup()
+        mem_grp=VGroup()
         
         
         
