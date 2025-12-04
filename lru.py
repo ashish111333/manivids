@@ -18,7 +18,7 @@ class LruScene(Scene):
 
         self.add(intro_text)
         self.add_sound("intro_text.mp3")
-        self.wait(3)
+        self.wait(1)
         self.play(intro_text.animate.scale(4),run_time=5)
         self.remove(intro_text)
         cache_ex=["hello",1,"{name: titi}"]

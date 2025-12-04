@@ -3,7 +3,6 @@ import sys
 import os
 from elevenlabs.client import ElevenLabs
 
-print(os.getcwd())
 
 load_dotenv()
 
