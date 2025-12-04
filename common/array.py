@@ -2,12 +2,12 @@ from manim import *
 from typing import  List,Tuple
 
 
-def create_array(sqr_length: float,l:int):
+def create_array(length: float,width: float,l:int):
     
     arr=VGroup()
     for i in range(l):
-        arr+=Square(side_length=sqr_length).scale(1).set_color(GREEN)
-    arr.arrange(DOWN,buff=0.2)
+        arr+=Rectangle(height=length,width=width).scale(1).set_color(GREEN)
+    arr.arrange(DOWN,buff=0.01)
     return arr
 
 def object_pool(objs: List):
