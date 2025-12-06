@@ -192,7 +192,7 @@ class LruScene(Scene):
         vgrp012=VGroup(pool[0],pool[1],pool[2])
         self.play(vgrp012.animate.shift(DOWN*1.3),FadeOut(pool[2]),run_time=2)
         self.play(pool_item.animate.move_to(arr[0].get_center()),run_time=3)
-   
+
         
         # show generalized array cache with time complexity
         
