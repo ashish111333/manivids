@@ -37,7 +37,7 @@ class LruScene(Scene):
         It will take objects  from your program and store  them in this array.
  
         """
-        self.wait(3)
+        self.wait(7)
         
         if not Path("prog_intro.mp3").exists():
             create_voice_file(mem_speech,"prog_intro")
@@ -135,6 +135,7 @@ class LruScene(Scene):
         self.add_sound("temp_exp3.mp3")
         self.wait(10)
         self.play(Indicate(pool[1],color=PINK,scale_factor=2),run_time=1.8)
+        
         # move 1 to top 
         arr_1_pos=arr[1].get_center()
         arr_0_pos=arr[0].get_center()
@@ -152,35 +153,51 @@ class LruScene(Scene):
         
         self.add_sound("temp_exp4")
         self.wait(9)
-        self.play(Indicate(pool[1],color=PINK,scale_factor=1.8),run_time=1.8)
-        self.play()
-       
-        # generalized array cache            
+        self.play(Indicate(pool[0],color=PINK,scale_factor=1.8),run_time=1.5)
+        
+        
+        # move 0 to 1
+        vgrp12=VGroup(pool[1],pool[2])
+        pool0pos=pool[1].get_center()
+        self.play(vgrp12.animate.shift(DOWN*1.3),pool[0].animate.move_to(pool0pos),run_time=3.8)
+        
+        temp_exp5="""
+        so if you noticed ...shifting the string object hello, which was the last item in the cache aka the least recent item 
+        it tooks us three shifts in this array. can you guess how much it would take for an array of size n ? 
+        ...before I explain it ... let's look at what happens when our program wants to add more items to cache.
+
+        """
+        if not Path("temp_exp5.mp3").exists():
+            create_voice_file(temp_exp5,"temp_exp5")
+        self.add_sound("temp_exp5.mp3")
+        self.wait(19)
+        
+        
+        pool_item=Text("5").set_color(YELLOW).scale(0.8)
+        pool_item.move_to(prog_rect.get_center())
+        self.play(FadeIn(pool_item),run_time=2)
+        
+        temp_exp6="""
+        so let's say now your program wants to add this integer item 5 to the cache.
+        but the cache is full so it will evict the least recently  used item to make room for this 
+        integer item.
+        """
+        if not Path("temp_exp6.mp3").exists():
+            create_voice_file(temp_exp6,"temp_exp6")
+
+        self.add_sound("temp_exp6.mp3")
+        self.wait(14)
+        
+        # evict lru item
+        vgrp012=VGroup(pool[0],pool[1],pool[2])
+        self.play(vgrp012.animate.shift(DOWN*1.3),FadeOut(pool[2]),run_time=2)
+        self.play(pool_item.animate.move_to(arr[0].get_center()),run_time=3)
+   
+        
+        # show generalized array cache with time complexity
         
         
         
         # explain why dll is better and also compare
         
             
-
-        
-            
-            
-      
-      
-        
-        
-        
-        
-        
-        
-          
-        
-        
-        
-        
-        
-
-    
-        
-
