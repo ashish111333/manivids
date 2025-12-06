@@ -20,9 +20,11 @@ def create_node(sq_side_l:float):
     r_ptr=Text("R_PTR").set_color(RED)
     data=Text("Data").move_to(node.get_center()+UP*0.4)
     ptr_grp=VGroup(l_ptr,r_ptr).move_to(node.get_center()-UP*0.4)
-    l_arr=Arrow()
-    r_arr=Arrow()    
-    grp=VGroup(node,data,ptr_grp)
+    
+    l_arr=Arrow(start=node.get_left()-UP*0.4,end=node.get_left()-LEFT-DOWN*0.4)
+ 
+    r_arr=Arrow(start=node.get_right()+UP*0.4,end=node.get_right()+RIGHT+0.4*UP)
+    grp=VGroup(node,data,ptr_grp,l_arr,r_arr)
     return grp
     
     
