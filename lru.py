@@ -5,9 +5,10 @@ from manim import *
 from common.array import create_array,object_pool,rect_with_label
 from voiceover import create_voice_file
 from pathlib import Path
+from typing import List
 
 
-config.disable_caching=True
+config.disable_caching=False
 
 class LruScene(Scene):
     def construct(self):
@@ -193,12 +194,42 @@ class LruScene(Scene):
         self.play(vgrp012.animate.shift(DOWN*1.3),FadeOut(pool[2]),run_time=2)
         self.play(pool_item.animate.move_to(arr[0].get_center()),run_time=3)
 
-        
+        self.clear()
         # show generalized array cache with time complexity
+        arr=create_array(0.6,1.2,10)
+        
+        arr_indx_labels_part1=[0,1,2,3,4,5]
+        arr_indx_labels_grp=VGroup()
+        for i,j in zip(arr[0:6],range(6)):
+            arr_indx_labels_grp+=Text(str(j)).move_to(i.get_center()+LEFT*0.8).scale(0.5)
+            
+        arr_index_labels_part2:List[Mobject]=[Dot(0.01),Dot(0.01),Dot(0.01),Text("n")]  
+        arr_index_labels_grp2=VGroup()
+        for i,j in zip(arr[6:10],arr_index_labels_part2):
+            arr_index_labels_grp2+=j.move_to(i.get_center()+LEFT*0.8).scale(0.5)
+        final_grp=arr_indx_labels_grp+arr_index_labels_grp2
         
         
         
+        temp_exp7="""
+        an array really tracks the most recent items really well added to it over a period of time,
+        but theres one problem, if we use array as a cache store sometimes cache would  need to push the last item
+        to the very front to make it most recent. let's generalize this. ... below there is an array having n items
         
+        """ 
+        if not Path("temp_exp7.mp3").exists():
+            create_voice_file(temp_exp7,"temp_exp7")
+        self.add_sound("temp_exp7.mp3")
+        self.wait(3)
+        self.play(Create(arr),run_time=7)
+        self.play(Create(final_grp),run_time=5)
+
+        temp_exp8="""
+        now if you want to move
+        """
+                
         # explain why dll is better and also compare
+        
+        
         
             
