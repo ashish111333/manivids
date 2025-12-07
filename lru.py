@@ -300,40 +300,51 @@ class LruScene(Scene):
         most_recent.next_to(arrow_mst_recent,direction=UP)
         least_recent.next_to(arrow_lst_recent,direction=UP)
 
-       
+        self.wait(2)
         
-        temp_exp12="""
+        temp_exp13="""
         so in an  actual LRU cache implemenation we use a linked list instead of an array to store items,
         simply because shifting the the least recently  used item to end is an O Of 1 operation.
         """
-        if not Path("temo_exp12").exists():
-            create_voice_file(temp_exp12,"temp_exp12")
-        self.add_sound("temp_exp12.mp3")
-        self.wait(12)
-        temp_exp13="""
-        so the first Node is least recent as it was added first.
-        """
-        if not Path("temp_exp13.mp3").exists():
+        if not Path("temo_exp13").exists():
             create_voice_file(temp_exp13,"temp_exp13")
         self.add_sound("temp_exp13.mp3")
+        self.wait(12)
+        temp_exp14="""
+        so the first Node is least recent as it was added first.
+        """
+        if not Path("temp_exp14.mp3").exists():
+            create_voice_file(temp_exp13,"temp_exp14")
+        self.add_sound("temp_exp14.mp3")
         self.wait(3)    
         self.play(Indicate(dll[0]),run_time=1.5)
         self.play(Create(arrow_lst_recent),run_time=2)
         self.play(Create(least_recent),run_tim3=2)
         
         
-        temp_exp14="""
+        temp_exp15="""
         and the last node is the Most recent one.
         """
-        if not Path("temp_exp14.mp3").exists():
-            create_voice_file(temp_exp14,"temp_exp14")
-        self.add_sound("temp_exp14.mp3")
+        if not Path("temp_exp15.mp3").exists():
+            create_voice_file(temp_exp14,"temp_exp15")
+        self.add_sound("temp_exp15.mp3")
         self.wait(2)
         self.play(Indicate(dll[3]),run_time=1.5)
         self.play(Create(arrow_mst_recent),run_time=2)
         self.play(Create(most_recent),run_time=1.5)
         self.wait(3)
         
+        end_tx="""
+        That's it for this video if you enjoyed this make sure to give a thumbs up,
+        make sure to check the description for LRU cache source code using linked list.
+        """
+        if not Path("end_tx.mp3").exists():
+            create_voice_file(end_tx,"end_tx")
+            
+        self.add_sound("end_tx.mp3")
+        tx=Text("Thank you").scale(2).set_color_by_gradient(PURPLE,PINK)
+        self.play(Write(tx),run_time=4)
+              
         # add an image of code maybe ?? :()
         
         

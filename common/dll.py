@@ -17,7 +17,7 @@ def create_node(sq_side_l:float):
     
     node=Square(sq_side_l).set_color(BLUE_B)
 
-    data=Text("Data").move_to(node.get_center()).scale(0.5)
+    data=Text("data").move_to(node.get_center()).scale(0.5)
     l_arr=Arrow(start=node.get_left()-UP*0.4,end=node.get_left()-UP*0.4-1.5*RIGHT)
  
     r_arr=Arrow(start=node.get_right()+UP*0.4,end=node.get_right()+1.5*RIGHT+0.4*UP)
