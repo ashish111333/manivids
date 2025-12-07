@@ -6,7 +6,7 @@ from common.array import create_array,object_pool,rect_with_label
 from voiceover import create_voice_file
 from pathlib import Path
 from typing import List
-
+from common.dll import create_dll
 
 config.disable_caching=True
 
@@ -38,15 +38,16 @@ class LruScene(Scene):
         It will take objects  from your program and store  them in this array.
  
         """
-        self.wait(7)
+        
         
         if not Path("prog_intro.mp3").exists():
             create_voice_file(mem_speech,"prog_intro")
             
         self.add_sound("prog_intro.mp3")    
-        
+        self.wait(1)
         self.play(FadeIn(mem_grp),run_time=6)
         self.play(mem_grp.animate.shift(LEFT*2),run_time=1.2)
+        self.wait(1.5)
         
         prog_speech="""
         on the right, there's a program that has three objects that it wants to store.
@@ -81,6 +82,7 @@ class LruScene(Scene):
         
         
         self.add_sound("label_speech.mp3")
+        self.wait(2)
         self.play(FadeIn(arr_indx_labels),run_time=1.5)
         exp_lru="""
         Now in lru cache we always keep the most recently used item at the front of the array as you can see our cache
@@ -212,17 +214,18 @@ class LruScene(Scene):
         
         
         temp_exp7="""
-        an array really tracks the most recent items really well added to it over a period of time,
-        but theres one problem, if we use array as a cache store sometimes cache would  need to push the last item
-        to the very front to make it most recent. let's generalize this. ... below there is an array having n items
+        an array perfectly tracks the most recent items added to it over a period of time ,
+        but there's one problem, if we use array as a cache store sometimes cache would  need to push the last item
+        to the very front to make it most recent. let's see how ... here's an array of max capacity n acting as cache. 
         
         """ 
         if not Path("temp_exp7.mp3").exists():
             create_voice_file(temp_exp7,"temp_exp7")
         self.add_sound("temp_exp7.mp3")
-        self.wait(3)
+        self.wait(2.5)
         self.play(Create(arr),run_time=7)
         self.play(Create(final_grp),run_time=5)
+        self.wait(3.9)
 
         temp_exp8="""
         now if you want to move the least recent item to the end of the array you would have to do 
@@ -230,13 +233,17 @@ class LruScene(Scene):
         """
         if not Path("temp_exp8.mp3").exists():
             create_voice_file(temp_exp8,"temp_exp8")
+        self.add_sound("temp_exp8.mp3")
+        self.wait(7)
         
         temp_exp9="""
         this will move to the end of the array. that's one operation
         """
         if not Path("temp_exp9.mp3").exists():
+        
             create_voice_file(temp_exp9,"temp_exp9")
         self.add_sound("temp_exp9")
+        self.wait(1.3)
         self.play(Indicate(arr[0],scale_factor=1.08),run_time=2)
         brc=Brace(arr-arr[0],direction=RIGHT)
         brc_txt=Text("n-1").next_to(brc,direction=RIGHT)
@@ -247,12 +254,12 @@ class LruScene(Scene):
             create_voice_file(temp_exp10,"temp_exp10")
         
         self.add_sound("temp_exp10.mp3")
-        self.wait(2)
+        self.wait(2.8)
         self.play(Indicate(arr-arr[0],scale_factor=1.08),run_time=1.5)
         self.play(Create(brc),Create(brc_txt),run_time=1)
         grp=VGroup(arr,final_grp,brc,brc_txt)
         self.play(grp.animate.shift(LEFT*2),run_time=1)
-        self.wait(3)
+        self.wait(1.8)
         temp_exp11="""
         so total operations will be n, so time complexity for array cache will be O of n.
         """
@@ -261,19 +268,75 @@ class LruScene(Scene):
         
         self.add_sound("temp_exp11")
         self.wait(2)
-        txt=Text("Total operations = ").shift(RIGHT*1.2)
-        txt1=MathTex(r"n - 1 + 1 ").next_to(txt,direction=RIGHT*0.1)
+        txt=Text("Total operations  ").shift(RIGHT*1.2)
+        txt1=MathTex(r"= n - 1 + 1 ").next_to(txt,direction=RIGHT*0.1)
         txt2=MathTex(r"= n").next_to(txt1,direction=RIGHT*0.1)
+        self.wait(1.5)
         tc_txt=MathTex(r"O(n)").shift(RIGHT*1.2+DOWN*1.2)
         
         grp=VGroup(txt,txt1,txt2,tc_txt)
         grp.scale(0.8).shift(RIGHT+UP)
         
         self.play(Write(grp),run_time=3)
-        self.wait(2)
-        
+        self.wait(3)
+         
         # explain why dll is better and also compare
+        temp_exp12="""
+        there's a better data structure to help us here, that is a doubly linked list.
+
+        """
+        if not Path("temp_exp12.mp3").exists():
+            create_voice_file(temp_exp12,"temp_exp12")
+        self.add_sound("temp_exp12")
+        self.clear()  
+        dll=create_dll(4,1.4)
+        self.play(Create(dll),run_time=3)
+        
+        
+        most_recent=Text("most recent").scale(0.5).set_color(RED)
+        least_recent=Text("least recent").scale(0.5).set_color(RED)
+        arrow_lst_recent=Arrow(start=dll[0].get_center()+UP*2,end=dll[0].get_center()+UP*0.8,stroke_width=0.5)
+        arrow_mst_recent=Arrow(start=dll[3].get_center()+UP*2,end=dll[3].get_center()+UP*0.8,stroke_width=0.5)
+        most_recent.next_to(arrow_mst_recent,direction=UP)
+        least_recent.next_to(arrow_lst_recent,direction=UP)
+
+       
+        
+        temp_exp12="""
+        so in an  actual LRU cache implemenation we use a linked list instead of an array to store items,
+        simply because shifting the the least recently  used item to end is an O Of 1 operation.
+        """
+        if not Path("temo_exp12").exists():
+            create_voice_file(temp_exp12,"temp_exp12")
+        self.add_sound("temp_exp12.mp3")
+        self.wait(12)
+        temp_exp13="""
+        so the first Node is least recent as it was added first.
+        """
+        if not Path("temp_exp13.mp3").exists():
+            create_voice_file(temp_exp13,"temp_exp13")
+        self.add_sound("temp_exp13.mp3")
+        self.wait(3)    
+        self.play(Indicate(dll[0]),run_time=1.5)
+        self.play(Create(arrow_lst_recent),run_time=2)
+        self.play(Create(least_recent),run_tim3=2)
+        
+        
+        temp_exp14="""
+        and the last node is the Most recent one.
+        """
+        if not Path("temp_exp14.mp3").exists():
+            create_voice_file(temp_exp14,"temp_exp14")
+        self.add_sound("temp_exp14.mp3")
+        self.wait(2)
+        self.play(Indicate(dll[3]),run_time=1.5)
+        self.play(Create(arrow_mst_recent),run_time=2)
+        self.play(Create(most_recent),run_time=1.5)
+        self.wait(3)
+        
+        # add an image of code maybe ?? :()
         
         
         
-            
+        
+
