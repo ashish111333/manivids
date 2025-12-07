@@ -333,6 +333,7 @@ class LruScene(Scene):
         self.play(Create(arrow_mst_recent),run_time=2)
         self.play(Create(most_recent),run_time=1.5)
         self.wait(3)
+        self.clear()
         
         end_tx="""
         That's it for this video if you enjoyed this make sure to give a thumbs up,
@@ -342,8 +343,8 @@ class LruScene(Scene):
             create_voice_file(end_tx,"end_tx")
             
         self.add_sound("end_tx.mp3")
-        tx=Text("Thank you").scale(2).set_color_by_gradient(PURPLE,PINK)
-        self.play(Write(tx),run_time=4)
+        tx=Text("Thank you").scale(3).set_color_by_gradient(BLUE,GREEN)
+        self.play(Create(tx),run_time=4)
               
         # add an image of code maybe ?? :()
         
