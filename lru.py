@@ -338,6 +338,9 @@ class LruScene(Scene):
         end_tx="""
         That's it for this video if you enjoyed this make sure to give a thumbs up,
         make sure to check the description for LRU cache source code using linked list.
+        ...  your feedback will help me make better videos. also tell me if you like these 
+        animated videos or you prefer more manual face to face way of explaining concepts.
+        Let me know.
         """
         if not Path("end_tx.mp3").exists():
             create_voice_file(end_tx,"end_tx")
@@ -345,6 +348,7 @@ class LruScene(Scene):
         self.add_sound("end_tx.mp3")
         tx=Text("Thank you").scale(3).set_color_by_gradient(BLUE,GREEN)
         self.play(Create(tx),run_time=4)
+        self.wait(3)
               
         # add an image of code maybe ?? :()
         
