@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import List
 
 
-config.disable_caching=False
+config.disable_caching=True
 
 class LruScene(Scene):
     def construct(self):
@@ -250,10 +250,27 @@ class LruScene(Scene):
         self.wait(2)
         self.play(Indicate(arr-arr[0],scale_factor=1.08),run_time=1.5)
         self.play(Create(brc),Create(brc_txt),run_time=1)
+        grp=VGroup(arr,final_grp,brc,brc_txt)
+        self.play(grp.animate.shift(LEFT*2),run_time=1)
         
+        temp_exp11="""
+        so total operations will be n, so time complexity for array cache will be O of n.
+        """
+        if not Path("temp_exp11.mp3").exists():
+            create_voice_file(temp_exp11,"temp_exp11")
         
+        self.add_sound("temp_exp11")
+        self.wait(2)
+        txt=Text("Total operations = ").shift(RIGHT*1.2)
+        txt1=MathTex(r"n - 1 + 1 ").next_to(txt,direction=RIGHT*0.1)
+        txt2=MathTex(r"= n").next_to(txt1,direction=RIGHT*0.1)
+        tc_txt=MathTex(r"O(n)").shift(RIGHT*1.2+DOWN*1.2)
         
+        grp=VGroup(txt,txt1,txt2,tc_txt)
+        grp.scale(0.8).shift(RIGHT+UP)
         
+        self.play(Write(grp),run_time=3)
+  
         
         # explain why dll is better and also compare
         
