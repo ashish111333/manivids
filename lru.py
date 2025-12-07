@@ -225,9 +225,36 @@ class LruScene(Scene):
         self.play(Create(final_grp),run_time=5)
 
         temp_exp8="""
-        now if you want to move
+        now if you want to move the least recent item to the end of the array you would have to do 
+        n operations can you see that ? 
         """
-                
+        if not Path("temp_exp8.mp3").exists():
+            create_voice_file(temp_exp8,"temp_exp8")
+        
+        temp_exp9="""
+        this will move to the end of the array. that's one operation
+        """
+        if not Path("temp_exp9.mp3").exists():
+            create_voice_file(temp_exp9,"temp_exp9")
+        self.add_sound("temp_exp9")
+        self.play(Indicate(arr[0],scale_factor=1.08),run_time=2)
+        brc=Brace(arr-arr[0],direction=RIGHT)
+        brc_txt=Text("n-1").next_to(brc,direction=RIGHT)
+        temp_exp10="""
+        and the remaining n minus 1 items need to be moved one Up each so that will be n minus 1 operations.
+        """
+        if not Path("temp_exp10.mp3").exists():
+            create_voice_file(temp_exp10,"temp_exp10")
+        
+        self.add_sound("temp_exp10.mp3")
+        self.wait(2)
+        self.play(Indicate(arr-arr[0],scale_factor=1.08),run_time=1.5)
+        self.play(Create(brc),Create(brc_txt),run_time=1)
+        
+        
+        
+        
+        
         # explain why dll is better and also compare
         
         
