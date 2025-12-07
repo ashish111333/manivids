@@ -252,7 +252,7 @@ class LruScene(Scene):
         self.play(Create(brc),Create(brc_txt),run_time=1)
         grp=VGroup(arr,final_grp,brc,brc_txt)
         self.play(grp.animate.shift(LEFT*2),run_time=1)
-        
+        self.wait(3)
         temp_exp11="""
         so total operations will be n, so time complexity for array cache will be O of n.
         """
@@ -270,7 +270,7 @@ class LruScene(Scene):
         grp.scale(0.8).shift(RIGHT+UP)
         
         self.play(Write(grp),run_time=3)
-  
+        self.wait(2)
         
         # explain why dll is better and also compare
         
